@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(L2)B5: Game đoán số bí mật</title>
+</head>
+<body>
+    <!-- <p>
+        <b>Game đoán số bí mật</b>
+        Số bí mật = ? (10~15)<br>
+        Hãy nhập số của bạn theo yêu cầu!
+    </p>
+ -->
+
+    <script>
+        var x = 10 + Math.round( 5*Math.random() );
+        console.log(x);
+        var a;
+        do{
+            a = prompt("Số bí mật = ? (10~15) \n Số nhập vào:");
+        }while(a<10 || a>15);
+
+        if(a==x){
+            alert("Chúc mừng, bạn đã đoán đúng");
+        }else if(a>x){
+            alert("Giá trị số trên lớn hơn số bí mật");
+        }else if(a<x){
+            alert("Giá trị số trên nhỏ hơn số bí mật");
+        }
+    </script>
+</body>
+</html>

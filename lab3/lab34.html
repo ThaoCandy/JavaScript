@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lab34: Búa kéo bao</title>
+    </head>
+    <style>
+    body{
+        display: flex;
+        justify-content: center;
+        padding: 10%;
+        text-align: center;
+    }
+    input{
+        margin: 5px;
+        cursor: pointer;;
+    }
+</style>
+    <body>
+        <div>
+            <div class id="demo">Máy: ? - Mời bạn chọn: </div>
+            <br>
+            <input type="button" value="Rock" onclick="getValue(0)">
+            <input type="button" value="Paper" onclick="getValue(1)">
+            <input type="button" value="Scissors" onclick="getValue(2)">
+            <br> <br>
+            <div id="demo2"></div>
+            <button onclick="location.reload(true)">Chơi lại</button>
+
+        </div>
+
+        <script>
+        var demo = document.getElementById("demo");
+        var demo2 = document.getElementById("demo2");
+        var arr = ['Rock','Paper','Scissors'];
+        
+        var s;
+        // console.log(s);
+
+        
+        function getValue(x){
+            s = Math.floor(Math.random()*3);
+            // console.log(x);
+            demo.innerText = "Máy: " + arr[s] + "　ー　";
+            demo.innerText +="Bạn: " + arr[x];
+            
+           if(x==s){
+            demo2.innerText = "Huề";
+           }else{
+                switch (s) {
+                    case 0: // Rock
+                        if(x==2){ //scissoer
+                            demo2.innerText = "Bạn thua";
+                            return;
+                        }
+                        break;
+                    case 1: // Paper
+                        if(x==0){ // Rock
+                            demo2.innerText = "Bạn thua";
+                            return;
+                        }
+                        break;
+                    case 2:// Scissors
+                        if(x==1){ // Paper
+                            demo2.innerText = "Bạn thua";
+                            return;
+                        }
+                        break;
+                        
+                }
+
+                demo2.innerText = "Bạn thắng";
+           }
+        }
+        
+    </script>
+    </body>
+</html>

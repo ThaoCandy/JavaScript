@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>(L2)B1: Tính cạnh huyền</title>
+    </head>
+    <body>
+        <!-- <p>Ta có một tam giác 3 cạnh a,b,c. Hãy nhập các cạnh a,b theo yêu cầu</p> -->
+        <script>
+        //Bài 1
+            var a = prompt("Mời nhập giá trị cạnh a:");
+            document.write("a = " + a + "<br>");
+            var b = prompt("Mời nhập giá trị cạnh b:")
+            document.write("b = " + b + "<br>");
+
+            var c = Math.sqrt( Math.pow(a,2) + Math.pow(b,2) );
+            document.write("--> Theo định lí pythagorean, cạnh huyền c = " + c);
+            
+        </script>
+    </body>
+</html>

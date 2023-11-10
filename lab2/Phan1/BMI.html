@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(L2)B3: Tính BMI</title>
+</head>
+<body>
+    <p>Nhập số cân nặng và chiều cao theo yêu cầu</p>
+    <script>
+        var cn  = prompt("Mời nhập số cân nặng (kg): ");
+        document.write("Cân nặng: " + cn + "kg <br>");
+
+
+        var cao = prompt("Mời nhập chiều cao (cm): ");
+         cao = cao/100;
+        document.write("Chiều cao: " + cao + "m <br>");
+
+        var bmi = cn/Math.pow(cao,2);
+        document.write("==> BMI =  "+ bmi + "kg/m2");
+
+        if(bmi< 18.5){
+            document.write(" --> Thiếu cân");
+        }else if(bmi >= 18.5 && bmi < 25){
+            document.write(" --> bình thường");
+        }else if(bmi >= 25 && bmi < 30){
+            document.write(" --> thừa cân");
+        }else if(bmi >= 30){
+            document.write(" --> béo phì");
+        }
+    </script>
+</body>
+</html>

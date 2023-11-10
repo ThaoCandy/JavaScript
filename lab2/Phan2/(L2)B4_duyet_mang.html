@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>(L2)B4_duyet_mang</title>
+    </head>
+    <body>
+        <p>
+            Cho mảng sau: <br>
+            theList = ['Lauren', 'Kevin', true, 35, null, undefined, ['one',
+            'two']];
+        </p>
+
+        <script>
+            const theList = [
+            'Lauren',
+             'Kevin',
+              true,
+               35,
+                null,
+                 undefined,
+                  ['one', 'two']
+            ];
+
+            //1. Xóa phần tử đầu và cuối mảng
+            theList.shift();
+            theList.pop();
+
+            //2. Thêm 'FIRST' vào đầu mảng
+            theList.unshift("FIRST");
+
+            //3. Thêm 'hello world' tại vị trí 4
+            theList.splice(3, 0, "hello world");
+
+            //4. Thêm 'middle' tại vị trí 3
+            theList.splice(2, 0, "middle");
+
+            //5. Thêm 'LAST' vào cuối
+            theList.push("LAST");
+
+            // Kết Quả:
+            document.write(theList.join());
+        </script>
+        
+    </body>
+</html>
