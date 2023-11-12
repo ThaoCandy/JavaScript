@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab42</title>
+</head>
+<style>
+    body{
+        padding: 50px;
+    }
+</style>
+<body>
+    <script>
+        
+
+function sinhVien(hoTen, diem){
+    this.hoTen = hoTen;
+    this.diem = diem;
+    this.hienThi = function(){
+        this.hocLuc = this.diem >= 5 ? "Đậu" : "Rớt";
+
+        document.write("<h3>Họ và tên:　" + this.hoTen + "</h3>");
+        document.write("<h3>Điểm:　" + this.diem + "</h3>");
+        document.write("<h3>Học lực:　" + this.hocLuc + "</h3>");
+        
+    }
+}
+
+var sv = new sinhVien();
+sv.hoTen = prompt("Họ và tên:");
+sv.diem = prompt("Điểm:");
+sv.hienThi();
+
+    </script>
+</body>
+</html>

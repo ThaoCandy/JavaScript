@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab45</title>
+</head>
+<style>
+    body{
+        padding: 3%;
+        text-align: center;
+    }
+    button{
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-right: 15px;
+    }
+</style>
+<body>
+    <input type="button" value="mở cửa sổ mới" onclick="openNewWD()">
+    <input type="button" value="đóng" onclick="closeNewWD()">
+    <input type="button" value="check" onclick="check()">
+
+    <script>
+        
+        var wd;
+        var i = 0;
+        
+        function openNewWD(){
+            if(i == 1){
+                alert("Một cửa sở đang được mở");
+                return;
+            }
+
+            let dacTinh = "menubar = yes, toolbar = yes, ";
+            if(window.navigator.userAgent.indexOf("MSIE") == -1){
+                dacTinh += "width = 100, height = 100";
+            }else{
+                dacTinh += "width = 250, height = 250";
+
+            }
+            wd = window.open("", "", dacTinh);
+            i = 1;
+        }
+
+        function closeNewWD(){
+            if(wd.closed == false){
+                wd.close();
+                i = 0;
+            }
+        }
+
+        function check(){
+            if(wd == undefined){
+                alert("Chưa có cửa sổ mới nào được mở.");
+            }else{
+                wd.closed ? alert("Cửa sổ đã đóng") : alert("Cửa sổ đang mở");
+            }
+        }
+    </script>
+
+</body>
+</html>

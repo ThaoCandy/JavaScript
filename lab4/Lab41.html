@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lab41</title>
+    </head>
+    <body>
+
+        <script>
+          
+            var main = new Array();
+
+            function item(name, model, cost, quantity) {
+                this.name = name;
+                this.model = model;
+                this.cost = cost;
+                this.quantity = quantity;
+
+            }
+
+            main.push(new item("sp1", 1, 2000, 5));
+            main.push(new item("sp2", 2, 1400, 10));
+            main.push(new item("sp3", 1, 1800, 15));
+
+            console.log("Danh sách các sản phẩm: \n",main);
+            console.log("Quantity của item thứ 3:　",main[2].quantity);
+        </script>
+    </body>
+</html>
