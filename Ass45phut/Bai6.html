@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 6</title>
+</head>
+<body>
+    <script>
+        var a = prompt("Mời nhập một số");
+        if(isFinite(a) == true && a != ' '){
+            a = +a;
+            for(let i = a; i >= 0; i--){
+                var sao = '';
+                for(let j = 0; j <= i; j++){
+                    sao += '*';
+                }
+                console.log(sao);
+            }
+        } else{
+            alert("Bạn phải nhập một số");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai5</title>
+</head>
+<style>
+    #div_tag{
+        width: 100px;
+        height: 100px;
+        /* background-color: yellow;
+        color: black; */
+        font-weight: bold;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+</style>
+<body>
+    <!-- Tạo một thẻ div trong HTML có các thuộc tính : width : 100px , height : 100px , back-ground color: yellow ,
+        khi di chuột vào element thì màu nền và màu text sẽ đổi cho nhau, 
+        tạo một nút bằng JS và thêm nút đó vào website 
+        đồng thời thêm dòng text “Click me” vào nút,
+         sau khi ấn vào nút thì màu nền của thẻ sẽ chuyển sang xanh nước biển và sau 3 giây thì thẻ biến mất. -->
+         <div id="div_tag" onmouseover="change()" onmouseout="change()" style="background-color: yellow; color: black;">
+            DIV TAG
+         </div>
+<br>
+         <script>
+            let divTag = document.getElementById("div_tag");
+            function change(){
+                // E.style.color là trỏ đến style được thiết lập trực tiếp trong thẻ HTML, mà không tính style file css
+                // trong trường hợp này dùng như dưới
+                // let textCl = window.getComputedStyle(divTag).getPropertyValue("color");
+                // divTag.style.color = window.getComputedStyle(divTag).getPropertyValue("background-color");
+                // divTag.style.backgroundColor = textCl;
+
+                let textCl = divTag.style.color;
+                divTag.style.color = divTag.style.backgroundColor;
+                divTag.style.backgroundColor = textCl;
+            }
+            var btn = document.createElement("button");
+            btn.innerText = "Click me";
+            btn.addEventListener("click", function(){
+                divTag.style.backgroundColor = "blue";
+                setTimeout(function(){
+                    divTag.style.display = "none";
+                }, 3000)
+            })
+            document.body.appendChild(btn);
+         </script>
+
+
+</body>
+</html>
