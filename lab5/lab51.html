@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab51: Mua iphone</title>
+</head>
+<style>
+    body{
+        text-align: center;
+        padding-top: 40px;
+    }
+</style>
+<body>
+    <label for="pro" id="pro" data-price = "1950">iphone 9</label>
+    <input type="number" id="qty" value="">
+
+    <button onclick="display()">OK</button>
+    <hr>
+    <h3>Name: <span id="name"></span></h3>
+    <h3>Amount: <span id="amount"></span></h3>
+
+    <script>
+        function display(){
+            let pro = document.getElementById("pro");
+            let qty = document.getElementById("qty");
+            let name = document.getElementById("name");
+            let amount = document.getElementById("amount");
+
+            name.innerText = pro.innerText;
+
+            amount.innerText = pro.getAttribute('data-price') * qty.value;
+
+        }
+    </script>
+</body>
+</html>

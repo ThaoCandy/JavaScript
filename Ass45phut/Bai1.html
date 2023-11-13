@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bài 1 Viết số NT</title>
+    </head>
+    <body>
+        <script>
+        var a = prompt("Mời nhập một số: ");
+        
+        // isNaN(x) : kiểm tra x có phải là một chuỗi hay không, không kiểm tra được số âm
+        // isFinite(x) : kiểm tra x có phải là một CHUỖI CHỨA SỐ hợp lệ hay  không --> lựa chọn tốt nhất
+        // 
+
+        if(isFinite(a) == true && a != '' && a != " "){
+            a = +a;
+            for (let i = 2; i <= a; i++) {
+                soNT(i);
+            }
+        }else{
+            alert("Bạn nhập không phải là một số hoặc rỗng");
+        }
+        
+
+        function soNT(x){
+            var check = true;
+            for(let j = 2; j< x; j++){
+                if( x % j == 0){
+                    check = false;
+                }
+            }
+            if(check == true){
+                console.log(x);
+            }
+        }
+    
+    </script>
+    </body>
+</html>

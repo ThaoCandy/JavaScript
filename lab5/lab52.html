@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab52: Bán Hàng</title>
+</head>
+<style>
+    body{
+        padding: 2%;
+    }
+    td{
+        padding: 5px 10px;
+    }
+    td:first-child{
+        width: 200px;
+    }
+    td:nth-child(3){
+        background: goldenrod;
+        cursor: pointer;
+    }
+    td:nth-child(3):hover{
+        background-color: bisque;
+    }
+</style>
+<body>
+    <section>
+        <h3>Danh Sách Sản Phẩm</h3>
+        <table id="list_pro">
+            <tr><td>iphone9</td><td>$2700</td><td>Thêm</td></tr>
+            <tr><td>Samsung Star</td><td>$1500</td><td>Thêm</td></tr>
+            <tr><td>Nokia 2020</td><td>$1200</td><td>Thêm</td></tr>
+            <tr><td>Sony Xperia</td><td>$1700</td><td>Thêm</td></tr>
+            <tr><td>Oppo</td><td>$1800</td><td>Thêm</td></tr>
+            
+        </table>
+    </section>
+    <section>
+        <h3>Giỏ hàng của bạn</h3>
+        <span id="check"></span>
+        <table id="list_bag"></table>
+        <h4>Thành tiền: $<span id="amount" value="">0</span></h4>
+    </section>
+
+    <script>
+        let amount = document.getElementById("amount");
+        let add_pro = document.querySelectorAll("#list_pro td:nth-child(3)");
+        // console.log(add_pro.length);
+        for (let i = 0; i < add_pro.length; i++) {
+            add_pro[i].setAttribute('onclick', 'addBag(this)');
+
+        }
+
+        function addBag(add){
+            var row = add.parentElement.cloneNode(true);
+            var clear_pro = row.querySelectorAll("tr > td:nth-child(3)");
+            clear_pro[0].innerText = "Xóa";
+            clear_pro[0].setAttribute('onclick', 'removePro(this)');
+            document.getElementById("list_bag").appendChild(row);
+//
+            let add_pri = row.querySelectorAll("tr > td:nth-child(2)");
+            // console.log(add_pri[0].innerText.substr(1));
+            let new_amount = +add_pri[0].innerText.substr(1) + 1*amount.innerText;
+            amount.innerText= new_amount; 
+            document.getElementById("check").innerText = "";
+
+        }
+
+        function removePro(clear){
+            
+            document.getElementById("list_bag").removeChild(clear.parentElement);
+            let new_amount = -clear.parentElement.querySelectorAll("tr > td:nth-child(2)")[0].innerText.substr(1) + 1*amount.innerText;
+            amount.innerText = new_amount;
+            check_bag();
+        }
+
+        function check_bag(){
+            if(amount.innerText == '0'){
+                document.getElementById("check").innerText = "rỗng";
+            }
+        }
+        check_bag();
+
+    </script>
+</body>
+</html>

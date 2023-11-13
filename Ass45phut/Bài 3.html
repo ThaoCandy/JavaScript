@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var ten, tuoi, email, sdt;
+        ten = prompt("Mời nhập tên: ");
+        tuoi = prompt("Mời  nhập tuổi: ");
+        email = prompt("Mời nhập email: ");
+        sdt = prompt("Mời nhập sdt: ");
+
+        tuoi = +tuoi;
+        if(ten == "" || ten == null || ten == " "){
+            console.log("tên không được bỏ trống");
+        }
+
+        if(isFinite(tuoi) == false || tuoi == " "){
+            console.log("tuổi không hợp lệ");
+        }
+        
+
+        if(!email.includes(".") || !email.includes("@")){
+            console.log("Email phải có ký tự . và @");
+        }
+
+            if(sdt.indexOf(0) != "0"){
+                console.log("Số điện thoại phải bắt đầu từ 0");
+            }
+        
+    </script>
+</body>
+</html>

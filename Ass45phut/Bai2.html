@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function nguoi(ten, tuoi, diaChi, ngheNgiep, luong){
+            this.ten = ten;
+            this.tuoi = tuoi;
+            this.diaChi = diaChi;
+            this.ngheNgiep = ngheNgiep;
+            this.luong = luong;
+    
+        }
+        var List_nguoi = new Array();
+        List_nguoi.push(new nguoi("thảo", "23", "Hải dương", "Sinh Vien", 5000000));
+        List_nguoi.push(new nguoi("Trang", "28", "Hà Nội", "Giáo Viên", 10000000));
+        List_nguoi.push(new nguoi("Liên", "25", "Hải Phòng", "Kế toán", 12000000));
+        
+        console.log(List_nguoi[0].ten);
+
+        for (let i = 0; i < List_nguoi.length; i++) {
+                if(List_nguoi[i].diaChi == "Hà Nội"){
+                    console.log(List_nguoi[i]);
+                }            
+        }
+       
+        let TL = 0;
+        for (let i = 0; i < List_nguoi.length; i++) {
+            TL += List_nguoi[i].luong;
+
+        }
+        console.log("Tổng lương là: ", TL);
+
+        
+    </script>
+</body>
+</html>
