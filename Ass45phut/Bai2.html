@@ -7,6 +7,28 @@
 </head>
 <body>
     <script>
+
+        class DongVat{
+            constructor(loai, canNang){
+                this.loai = loai;
+                this.canNang = canNang;
+            }
+        }
+
+        var banTrai = {
+            tuoi: 30,
+            diaChi: "japan",
+            ngheNgiep: "kinh doanh"
+
+        };
+        console.log(banTrai);
+        DongVat[0] = new DongVat("chihuahua", 4.5);
+        DongVat[1] = new DongVat("husky", 6.5);
+
+        console.log(DongVat[0]);
+
+
+        // Bài 2
         function nguoi(ten, tuoi, diaChi, ngheNgiep, luong){
             this.ten = ten;
             this.tuoi = tuoi;
