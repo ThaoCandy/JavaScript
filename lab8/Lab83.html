@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo sl8</title>
+</head>
+<body>
+    <video loop id="myplayer" src="/Pic/Nirvana.mp4" width="500" height="300">
+    </video>
+
+    <div id="controls">
+        <button onclick="playPause()">Play/Pause</button>
+        <button onclick="stop()">Stop</button>
+        <button onclick="replay()">Replay</button>
+        <button onclick="VolumeIncrease()">Volume (+)</button>
+        <button onclick="VolumeDecrease()">Volume (-)</button>
+        <button onclick="MuteVolume()">Mute/Unmute</button>
+    </div>
+
+    <script>
+        var myplayer = document.getElementById('myplayer');
+         function playPause(){
+            myplayer.paused ? myplayer.play() : myplayer.pause();
+         }
+
+         function stop(){
+            myplayer.pause();
+            myplayer.currentTime ? myplayer.currentTime = 0 : undefined;
+         }
+         function replay(){
+            myplayer.currentTime = 0;
+            myplayer.play();
+         }
+
+         // video-radio mặc định volume ban đầu là 1: lớn nhất
+         // volume: 0 ~ 1;
+         function VolumeIncrease(){
+            if(myplayer.volume < 1){
+                myplayer.volume = (myplayer.volume + 0.1).toFixed(1);
+            }
+         }
+         function VolumeDecrease(){
+            if(myplayer.volume > 0){
+                myplayer.volume = (myplayer.volume - 0.1).toFixed(1);
+            }
+         }
+         function MuteVolume(){
+            myplayer.muted = myplayer.muted ? false : true; 
+         }
+    </script>
+</body>
+</html>

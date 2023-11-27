@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lab74 - StarRate</title>
+    </head>
+    <style>
+    body{
+        padding: 2%;
+    }
+    ul.stars{
+        list-style-type: none;
+        padding: 0;
+        width: fit-content;
+    }
+
+    .star{
+        font-size: 2em;
+        color: #ddd;
+        display: inline-block;
+        cursor: pointer;
+    }
+    .orange{
+        color: orange;
+    }
+    .output{
+        background-color: #ddd;
+    }
+</style>
+
+    <body>
+        <ul class="stars">
+            <li class="star">&#10029;</li>
+            <li class="star">&#10029;</li>
+            <li class="star">&#10029;</li>
+            <li class="star">&#10029;</li>
+            <li class="star">&#10029;</li>
+
+        </ul>
+
+        <div class="output"></div>
+
+        <script>
+        let ul = document.querySelector("ul");
+        let stars = document.querySelectorAll(".star");
+        let output = document.querySelector(".output");
+
+        stars.forEach((star, index, arr)=> {
+            star.stt = index;
+            star.addEventListener('click', starRate);
+
+        });
+
+        function starRate(event){
+            output.innerText = `Bạn đã đánh giá ${(event.target.stt + 1)} sao`;
+            stars.forEach((star, index) => {
+                if( index <= event.target.stt){
+                    star.classList.add('orange');
+                }else{
+                    star.classList.remove('orange');
+
+                }
+            })
+        }
+
+        document.addEventListener('mousedown', function(){
+            if(!ul.contains(event.target)){
+                for(let star of stars){
+                    star.classList.remove('orange');
+                    output.innerText = '';
+                }
+            }
+        })
+    </script>
+    </body>
+</html>

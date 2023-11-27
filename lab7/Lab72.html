@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab72 - Go right Animation</title>
+</head>
+<style>
+    body{
+        padding: 2%;
+    }
+    div{
+        background-color: brown;
+        width: 100px; height: 100px;
+        position: absolute;
+        display: block;
+    }
+</style>
+<body>
+
+<button onclick="toTheRight()">Go Right</button> 
+<hr>
+<div id="block"></div>
+
+<script>
+    function toTheRight(){
+        let block = document.getElementById("block");
+        let x = 0;
+        setInterval(function(){
+            if(x== 600){
+                clearInterval()
+            }else{
+                x++;
+                block.style.left = x + 'px';
+            }
+        },2);
+    }
+</script>
+</body>
+</html>

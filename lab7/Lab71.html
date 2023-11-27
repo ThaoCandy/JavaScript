@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab71 - Kéo một phần tử...</title>
+</head>
+<style>
+    .box{
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+    }
+    .red{
+        background-color:blueviolet;
+    }
+</style>
+<body>
+    
+    <div class=box ondrop="Drop1()" ondragover="Drop2()">1
+        <div ondragstart="dragStart()" draggable="true"> drag me</div>
+    </div>
+
+    <div class="box"  ondrop="Drop1()" ondragover="Drop2()">2</div>
+
+    <script>
+        let Item;
+        function dragStart(){
+            Item = event.target;
+        }
+        function Drop2(){
+            event.preventDefault();
+    
+        }
+        function Drop1(){
+            event.preventDefault();
+            event.target.appendChild(Item);
+        }
+    </script>
+</body>
+</html>

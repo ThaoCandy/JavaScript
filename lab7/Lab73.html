@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab73 - Check form và URLsearchParams()</title>
+</head>
+<style>
+    body{
+        padding: 2%;
+    }
+</style>
+<body>
+    <form action="another73.html" method="get" onsubmit="return submitForm()">
+        <input type="text" name="firstname" id="" placeholder="firstname" > <br> <br>
+        <input type="text" name="lastname" id="" placeholder="lastname" > <br> <br>
+        <input type="number" name="Age" id="" placeholder="Age" > <br> <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function submitForm(){
+            let myForm = event.target;
+            let check = 0;
+            let fn, ln, age;
+            fn = myForm.firstname.value;
+            ln = myForm.lastname.value;
+            let name = fn + ln;
+            age = myForm.Age.value;
+
+            if(name.trim() == '' || isFinite(name)){ check = 1};
+            if(!isFinite(age) || Number(age) < 0){ check = 1};
+            if(check == 1){
+                alert("form gui khong thanh cong");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

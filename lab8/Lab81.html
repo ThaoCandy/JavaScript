@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo sl8</title>
+</head>
+<body>
+    <input type="file" onchange="uploadfile(this.files)">
+    <!-- file có thuộc tính: name, size, type, path,... -->
+    <div id="mess"></div>
+
+    <script>
+        let mess = document.getElementById("mess");
+        function uploadfile(files){
+            console.log(files);
+            console.log(files[0].size);
+            console.log(files[0].type);
+            // console.log(files[0].);
+            
+            mess.innerHTML = files[0].name
+
+        }
+    </script>
+
+
+
+<!--  upload nhiều files
+    
+    <input type="file" multiple onchange="uploadfile(this.files)">
+file có thuộc tính: name, size, type, path,...
+<div id="mess"></div>
+
+<script>
+    let mess = document.getElementById("mess");
+    function uploadfile(files){
+        mess.innerHTML = '';
+        console.log(files);
+        for (const file of files) {
+            mess.innerHTML += file.name + '<br>';
+        }
+        
+    }
+</script> -->
+</body>
+</html>

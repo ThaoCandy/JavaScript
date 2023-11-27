@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab75 - Check form đặt hàng</title>
+</head>
+<style>
+    body{
+        padding: 2%;
+    }
+
+</style>
+<body>
+    <h3>Đặt hàng</h3>
+    <form action="#" method="get" onsubmit="return checkForm(event)">
+        Sản Phẩm <input type="text" name="item" id="">
+        <br> <br>
+
+        Loại: 
+        <select name="loai" id="loai">
+            <option value="giáo dục">giáo dục</option>
+            <option value="gia dụng" selected>gia dụng</option>
+            <option value="mỹ phẩm">mỹ phẩm</option>
+            <option value="điện tử">điện tử</option>
+        </select>
+        <br> <br>
+
+        Đơn giá <input type="number" name="price" id="">
+        <br> <br>
+
+        <label for="address">Nơi nhận hàng</label>
+        <input type="radio" name="address" id="" value="0" checked> Nội thành
+        <input type="radio" name="address" id="" value="100000"> Ngoại thành
+        <br><br>
+
+        Phí vận chuyển: <span id="vc">0</span>
+        <hr>
+
+        <input type="submit" value="Đặt mua">        
+    </form>
+
+    <script>
+        let adds = document.getElementsByName('address');
+        for (const add of adds) {
+            add.addEventListener('click', (e)=>{
+                let vc = document.getElementById('vc');
+                vc.textContent = e.target.value;
+            })
+        }
+
+        let loai = document.getElementsByName('loai')[0];
+        console.log(loai);
+        function checkForm(e){
+            let mess = '';
+            let myForm = event.target;
+            if(myForm.item.value.trim() == ''){
+                mess += 'Tên sản phẩm không hợp lệ \n';
+            }
+            let price = myForm.price.value;
+            if(isFinite(price) == false || price < 0 || price == ''){
+                mess += 'Bạn nhập giá không hợp lệ';
+            }
+
+            if(mess !== ''){
+                alert(mess);
+                return false;
+            }else{
+                mess = 'Chúc mừng bạn đã nhập đúng';
+                alert(mess);
+                return true;
+            }
+        }
+
+
+    </script>
+</body>
+</html>

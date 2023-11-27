@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Demo sl8</title>
+    </head>
+    <body>
+        <button onclick="getLocation()">Click me</button>
+        <p id="demo"></p>
+        <script>
+        // getCurrentPosition(seuccessFunction, errorFunction, options)
+        // seuccessFunction: hàm thực hiện ngay sau khi xác định được vị trí thành công
+        // errorFunction: hàm thực hiện khi không thể xác định được vị trí (lỗi mạng,...)
+        // options: Một đối tượng chứa các tùy chọn liên quan đến yêu cầu vị trí
+        //, như độ chính xác mong muốn và thời gian tối đa cần để lấy vị trí.
+        var demo = document.getElementById("demo");
+        function getLocation(){
+            if(navigator.geolocation){
+                console.log(navigator.geolocation);
+                navigator.geolocation.getCurrentPosition(Showposition, ErrorMess);
+            }else{
+                demo.innerHTML = 'Geolocation không được hỗ trợ bởi trình duyệt này';
+            }
+
+        }
+
+        function Showposition(position){
+            demo.innerHTML = 'vĩ độ: ' + position.coords.latitude + '<br>' +
+                            'kinh độ: ' + position.coords.longitude;
+        }
+
+        function ErrorMess(){
+            alert("Hiện tại không thể xác định được vị trí của bạn");
+        }
+    </script>
+    </body>
+</html>

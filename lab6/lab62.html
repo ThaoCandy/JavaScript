@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tictactoe Game</title>
+</head>
+<style>
+    body{
+        padding: 2%;
+        text-align: center;
+    }
+    table button{
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+    }
+    button:disabled{
+        box-shadow: 0 0 5px gray;
+    }
+</style>
+<body>
+    <h2>Tictactoe</h2>
+    <table align="center">
+        <tr><td><button></button></td><td><button></button></td><td><button></button></td></tr>
+        <tr><td><button></button></td><td><button></button></td><td><button></button></td></tr>
+        <tr><td><button></button></td><td><button></button></td><td><button></button></td></tr>
+       
+    </table>
+
+    <script>
+        const color_Arr = ['aqua', 'yellow'];
+        var count = 0;
+        var flag = true;
+        let button = document.querySelectorAll("table button");
+        
+       for (var el of button) {
+            el.setAttribute("onclick", "mark(this)");
+       }
+
+       function mark(el){
+        if(count == 8){
+            alert("Game over");
+            location.reload();
+            return;
+        }
+        el.style.backgroundColor = flag ? color_Arr[0] : color_Arr[1];
+        el.innerText = flag ? 'X' : 'O';
+        el.setAttribute('disabled', 'true');
+        count++;
+        flag = !flag;
+       }
+
+       
+    </script>
+</body>
+</html>

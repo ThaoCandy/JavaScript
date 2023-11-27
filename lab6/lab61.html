@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <style>
+    body{
+        padding: 2%;
+    }
+    .title{
+        background: gainsboro;
+        cursor: pointer;
+        font-size: larger;
+    }
+    .text{
+        padding-left: 20px;
+        display: none;
+    }
+    .active{
+        display: block;
+    }
+
+</style>
+    <body>
+        <div class="title">Tiêu đề 1</div>
+        <div class="text">Text 1</div>
+        <div class="title">Tiêu đề 2</div>
+        <div class="text">Text 2</div>
+        <div class="title">Tiêu đề 3</div>
+        <div class="text">Text 3</div>
+
+        <script>
+        let title = document.getElementsByClassName("title");
+        let text = document.getElementsByClassName("text");
+        for (let i = 0; i < title.length; i++) {
+            title[i].onclick = ()=> {
+            for (let j = 0; j < text.length; j++) {
+                text[j].classList.remove("active");
+            }
+            title[i].nextElementSibling.classList.toggle("active");
+            }
+        }
+    </script>
+
+    </body>
+</html>

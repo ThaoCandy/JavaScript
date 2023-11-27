@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <style>
+    body{
+        padding: 2%;
+        text-align: center;
+    }
+</style>
+    <body>
+        <label for="time">Mời bạn nhập thời gian kết thúc:</label>
+        <input type="datetime-local" id="end_time">
+        <input type="button" value="Bắt đầu" onclick="Start()">
+
+        <h3>CLOCK COUNT DOWN</h3>
+        <h3 id="clock">0</h3>
+
+        <button id="stop">Dừng</button>
+
+        <script>
+        let end_time = document.getElementById("end_time");
+        let clock = document.getElementById('clock');
+        let stopBtn = document.getElementById('stop');
+        var a;
+
+        function Start(){
+            let currentTime = (new Date()).getTime();
+            let ET = (new Date(end_time.value)).getTime();
+            
+            if(ET - currentTime <= 0){
+                alert('Thời gian Không hợp lệ');
+                return;
+            }else{
+                CountDown();
+            }
+            
+        }
+
+        function CountDown(){
+            let ET = (new Date(end_time.value)).getTime();
+
+            a = setInterval(function(){
+
+                let currentTime = (new Date()).getTime();
+                let dateDiff = ET - currentTime;
+
+                if(dateDiff <= 0){
+                    clearInterval(a);
+                    return;
+                }
+                let day, hours, minutes, secounds;
+                day = Math.floor(dateDiff/(1000 * 60 * 60 * 24));
+                hours = Math.floor((dateDiff%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
+                minutes = Math.floor((dateDiff%(1000 * 60 * 60))/(1000 * 60));
+                secounds = Math.floor((dateDiff%(1000 * 60))/1000);
+
+                console.log(day, hours, minutes, secounds);
+                clock.textContent = `${day} ngày - ${hours} giờ - ${minutes} phút - ${secounds} giây `
+
+            }, 1000)
+        }
+        stopBtn.addEventListener('click', function(){
+            clearInterval(a);
+        })
+        
+    </script>
+    </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+</head>
+<style>
+    body{
+        padding: 2%;
+        /* text-align: center; */
+    }
+    /* body * {
+        border: 1px solid;
+    } */
+    .containAll{
+        width: 500px;
+        overflow: hidden;
+        height: fit-content;
+        position: relative;
+        height: 300px;
+        /* overflow: auto; */
+    }
+    #slide_contain{
+        position: absolute;
+        display: flex;
+        flex-wrap: nowrap;
+        height: 100%;
+        transition: all 0.5s;
+        /* left: -500%; */
+    }
+    #slide_contain > *{
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: chocolate;
+        border: 1px solid;
+        width: 500px;
+        /* phải bàng width .containAll */
+    }
+    #slide_contain img{
+        height: 100%;
+    }
+    #buttons{
+        width: 500px;
+        text-align: center;
+    }
+    #buttons > button{
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div class="containAll">
+        <div id="slide_contain">
+           <div><img src="/Pic/monjasarada.jpg" alt=""></div>
+           <div><img src="/Pic/282672719_2924747794490410_1012676404172948644_n.jpg" alt=""></div>
+           <div><img src="/Pic/monjasarada.jpg" alt=""></div>
+           <div><img src="/Pic/282672719_2924747794490410_1012676404172948644_n.jpg" alt=""></div>
+           <div><img src="/Pic/monjasarada.jpg" alt=""></div>
+
+        </div>
+    </div>
+    <div class="" id="buttons">
+        <button onclick="changeTo(0)">first</button>
+        <button onclick="pve(-1)">pre</button>
+        <button onclick="pve(1)">next</button>
+        <button onclick="changeTo(4)">last</button>
+    </div>
+   
+    <script>
+        let slide_contain = document.getElementById("slide_contain");
+
+        var so_img = slide_contain.children.length;
+        slide_contain.style.width = so_img*100 + "%";
+
+
+        let buttons = document.querySelectorAll("#buttons > button");
+        buttons[3].setAttribute( "onclick", ("changeTo(" + (so_img -1) + ")") );
+        
+        var n = 0;
+        function changeTo(x){
+            n = x==0 ? 0: so_img-1;
+           slide_contain.style.left = "-" + x*100 + "%";
+        }
+        changeTo(n);
+
+        function pve(x){
+            n = n + x;
+            n = n < 0 ? so_img-1 : n;
+            n = n > so_img -1 ? 0 : n;
+            slide_contain.style.left =  "-" + n*100 + '%'; 
+        }
+        // var setITV = setInterval(function(){
+        //     pve(1);
+        // }, 3000);
+
+        // slide_contain.addEventListener('mouseover', function(){
+        //     clearInterval(setITV);
+        // })
+        // slide_contain.addEventListener("mouseout", function(){
+        //     setITV = setInterval(function(){pve(1);}, 3000);
+        // })
+
+    </script>
+</body>
+</html>

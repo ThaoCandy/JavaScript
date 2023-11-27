@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 64 box clicker speed test game</title>
+</head>
+<style>
+    *{
+        border: 1px solid;
+
+    }
+    .output{
+        width: 500px;
+        height: 500px;
+        border: 1px solid;
+        margin: auto;
+        text-align: center;
+    }
+    .box{
+        width: 50px;
+        height: 50px;
+        position: relative;
+        top: 50px;
+        left: 20%;
+        background-color: brown;
+    }
+    .message{
+        text-align: center;
+        padding: 10px;
+        font-size: 1.3em;
+    }
+</style>
+<body>
+    <div class="output"></div>
+    <div class="message"></div>
+
+    <script>
+        const output = document.querySelector('.output');
+        const message = document.querySelector('.message');
+
+        message.textContent = "Nhấn để bắt dầu";
+        const box = document.createElement("div");
+        box.textContent = "Click me";
+        box.style.color = "white";
+        const game = {
+            timer: 0,
+            start: null
+        };
+
+        box.classList.add("box");
+        output.append(box);
+
+        function ranNum(max){
+            return Math.floor(Math.random()*max);
+        }
+
+        function addBox(){
+            message.textContent = "Nhấn vào hcn đó nhanh nhất có thể";
+            game.start = new Date().getTime();
+            box.style.display = "block";
+            box.style.top = ranNum(450) + "px";
+            box.style.left = ranNum(450) + "px";
+        }
+
+        box.onclick = ()=> {
+            box.textContent = "";
+            box.style.display = "none";
+            game.timer = setTimeout(addBox, ranNum(3000));
+            console.log(game.timer);
+            if(!game.start){ 
+                // để dùng cho lần đầu tiên nhấn đợi hàm settimeout thực hiện
+                message.textContent = "Loading....";
+            }else{
+                const cur = new Date().getTime();
+                const dur = (cur -game.start)/1000; // đổi ra giây
+                message.textContent = 'Mất' + dur + 's để nhấn';
+            }
+        }
+    </script>
+</body>
+</html>
