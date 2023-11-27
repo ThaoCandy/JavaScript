@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Demo Đề Thi</title>
+    </head>
+    <style>
+    body{
+        min-height: 1500px;
+    }
+    .red{
+        color: red;
+    }
+</style>
+    <body>
+        <section>
+            <h3>Form mua hàng</h3>
+            <form action="#" method="get" onsubmit="return Validate()">
+                <input type="text" name="name" placeholder="Họ và tên"> <br> <br>
+                <input type="text" name="tel" placeholder="Số điện thoại"> <br>
+                <br>
+                <input type="number" name="age" placeholder="Tuổi"> <br> <br>
+                <input type="email" name="email" placeholder="Email"> <br> <br>
+
+                <input type="submit" value="Submit">
+                <input type="reset" value="Reset">
+            </form>
+
+        </section>
+
+        <section>
+            <h3>Slide ảnh</h3>
+            <div
+                style="width: 500px; height: 300px; border: 1px solid; text-align: center;">
+                <img onmouseover="clearinterval()" onmouseout="interval()"
+                    src="/Pic/2.jpg" alt height="100%" width="auto"
+                    id="slideImg">
+            </div> <br>
+            <button onmouseover="clearinterval()" onmouseout="interval()"
+                onclick="changeImg(-1)"> PREV </button>
+            <button onmouseover="clearinterval()" onmouseout="interval()"
+                onclick="changeImg(1)"> NEXT </button>
+        </section>
+
+        <section>
+            <h3>Hóa Đơn Mua Hàng</h3>
+            <form action="#" method="get" onsubmit="return DatHang()">
+                <label for="item">Danh sách sản phẩm</label>
+                <select name="item" id="item">
+                    <option value="" disabled selected>Chọn sản phẩm tại đây</option>
+                </select>
+                <br>
+                <label for="soLuong">Số lượng: </label>
+                <input type="number" value="" min="0" name="soLuong">
+                <br>
+                <span id="dichvu" for="dichvu">Dịch vụ đi kèm: </span>
+                
+            <br>
+            Giá : <span id="showPrice">0</span> <br>
+            Giá Đơn Hàng:  <span id="Invoice">0</span> <br>
+
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </form>
+        </section>
+        <script>
+        // Câu 1: From
+        function Validate(){
+
+            let myForm = event.target;
+            let name, tel, email,  age;
+
+            name = myForm.name.value;
+            tel = myForm.tel.value;
+            email = myForm.email.value;
+            age = myForm.age.value;
+
+            console.log(name, tel, email, age);
+            let warning = '';
+            if(name.trim() == ''){
+                warning += 'Tên không được bỏ trống \n';
+                // ví dụ: thêm dòng báo lỗi ngay cạnh input nhập sai
+                myForm.name.insertAdjacentHTML("afterend", "<i class='red'>Tên không được bỏ trống</i>");
+            }else{
+                // nếu nhập đúng thì xóa đi dòng báo lỗi đi
+                myForm.name.nextElementSibling.remove();
+            }
+            if(isNaN(tel) || tel[0] != 0 || tel.lenght >=15){
+                warning += 'Số điện thoại không hợp lệ: không được để trống, phải có số 0 ở đầu, không quá 15 số \n';
+            }
+
+            if(isNaN(age) || Number(age) < 0){
+                warning += 'Tuổi phải là một số dương \n';
+            }
+            
+            if(!email.includes('.') || !email.includes('@')){
+                warning += `Email phải có ký tự '.' và '@'`;
+            }
+
+            if(warning !== ''){
+                alert(warning);
+                return false;
+            }
+            return true;
+        }
+
+        // Câu 2: Slide tự động 5 ảnh
+        let imgs = ['2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg'];
+        let n = 0;
+        function changeImg(x){
+            n = n + x;
+
+            n = n < 0 ? imgs.length -1 : n;
+            n = n == imgs.length ? 0 : n;
+
+            document.getElementById("slideImg").src = '/Pic/' + imgs[n];
+            
+        }
+        let a;
+        function interval(){
+            a = setInterval(function(){
+                changeImg(1);
+            } , 3000);
+        }
+        interval();
+
+        function clearinterval(){
+            clearInterval(a);
+        }
+
+        // Câu 3:
+        function item(name, price){
+            this.name = name;
+            this.price = price; 
+        }
+         function DVitem(name, price){
+            this.name = name;
+            this.price = price; 
+         }
+        let Items = [];
+        Items.push(new item('Iphone 7', 400));
+        Items.push(new item('Iphone 8', 450));
+        Items.push(new item('Iphone 8 plus', 460));
+        Items.push(new item('Iphone 10', 800));
+        Items.push(new item('Iphone 10 pro', 900));
+        
+
+        for (const i in Items) {
+            let itemName =document.getElementsByName("item")[0];
+            let option = document.createElement("option");
+            option.value = i;
+            option.textContent = Items[i].name;
+            itemName.appendChild(option);
+        }
+
+        let DVitems = [];
+        DVitems.push(new DVitem('Kèm sạc', 30));
+        DVitems.push(new DVitem('Kèm tai nghe', 50));
+        DVitems.push(new DVitem('Bảo hành', 100));
+        
+        for (const i in DVitems){
+            let input = document.createElement('input');
+            input.type = 'checkbox';
+            input.name = 'dichvu';
+            input.value = i;
+            
+            document.getElementById("dichvu").insertAdjacentElement("afterend", input);
+            input.insertAdjacentHTML('afterend', `<label title ="${DVitems[i].price}" >${DVitems[i].name}</label>`);
+            input.addEventListener("change", TinhGia);
+        }
+
+        let showPrice = document.getElementById('showPrice');
+        let Invoice = document.getElementById('Invoice');
+        let soLuong = document.getElementsByName('soLuong')[0];
+        document.getElementsByName("item")[0].addEventListener('change', function(){
+            showPrice.textContent =Items[event.target.value].price;
+            TinhGia();
+        })
+        soLuong.addEventListener("change", function(){
+            TinhGia();
+        })
+        function TinhGia(){
+            let gia = 0;
+            let nameDV = document.getElementsByName('dichvu');
+            for (const dv of nameDV) {
+                if(dv.checked){
+                    gia += (DVitems[dv.value].price);
+                }
+            }
+            gia =( Number(showPrice.innerText) + gia )* Number(soLuong.value);
+
+            Invoice.textContent = gia;
+        }
+        function DatHang(){
+            let itemName = document.getElementsByName("item")[0];
+            if(itemName.value == '' && soLuong.value == ''){
+                alert('Bạn chưa chọn sản phẩm nào');
+                return false;
+            }else if(itemName.value == ''){
+                alert('Bạn chưa chọn tên sản phẩm');
+                return false;
+
+            }else if(soLuong.value == ''){
+                alert('Bạn chưa nhập số lượng cho đơn hàng');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+    </body>
+</html>
