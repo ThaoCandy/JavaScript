@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        padding: 2%;
+        min-height: 1500px;
+    }
+</style>
+<body>
+
+    <section>
+        <h3>Câu 1: Validate form</h3>
+        <form action="#" method="get" onsubmit="return Validate()">
+            <input type="text" name="name" id="" placeholder="Name"> <br> <br>
+            <input type="number" name="age" id="" placeholder="Age"> <br> <br>
+            <input type="email" name="email" id="" placeholder="Email"> <br> <br>
+            <input type="text" name="tel" id="" placeholder="Tel"> <br> <br>
+            
+            <input type="submit" value="submit">
+            <input type="reset" value="reset">
+        </form>
+
+        <script>
+            function Validate(){
+                let name = event.target.name.value;
+                let age = event.target.age.value;
+                let email = event.target.email.value;
+                let tel = event.target.tel.value;
+                console.log(name, age, email, tel);
+                let warning = '';
+
+                if(name.trim() == ''){
+                    warning += '+ Tên không được để trống \n';
+                }
+                if(age != null){
+                if(isNaN(age) || Number(age) < 0){
+                    warning += '+ Số tuổi không hợp lệ \n';
+                }}
+
+                if(!email.includes('.') || !email.includes('@')){
+                    warning += '+ Email không hợp lệ \n';
+                }
+                if(isNaN(tel) || tel[0] != '0'){
+                    warning += '+ số điện thoại không hợp lệ \n';
+                }
+                if(warning != ''){
+                    alert(warning);
+                    return false;
+                }
+                return true;
+            }
+        </script>
+        <hr>
+    </section>
+    <section>
+        <h3>Câu 2: Slide Ảnh</h3>
+        <div style="width: 500px; height: 300px; border: 1px solid; text-align: center;">
+            <img id="imgID" src="/Pic/2.jpg" alt="" width="auto" height="100%">
+        </div> <br>
+        <div>
+            <button onclick="changeImg(-1)">Previous</button>
+            <button onclick="changeImg(1)">Next</button>
+            
+        </div>
+
+        <script>
+            let imgID = document.getElementById('imgID');
+            let imgs = ['2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg'];
+            let n = 0;
+            function changeImg(x){
+                n = n + x;
+                n = n < 0 ? imgs.length -1 : n;
+                n = n == imgs.length ? 0 : n;
+                imgID.src ='/Pic/' +  imgs[n];
+            }
+        </script>
+    <hr>
+    </section>
+
+    <section>
+        <h3>Câu 3: Form Đặt Hàng</h3>
+        
+        <form action="hoadon.html" method="get" onsubmit="return DatHang()">
+            <div>
+                <label for="list">Danh sách sản phẩm:</label>
+                <select name="list" id="list">
+                    <option value="" disabled selected>Nhấn để chọn</option>
+                    <option value="IP01">Iphone 1</option>
+                    <option value="IP02">Iphone 2</option>
+                    <option value="IP03">Iphone 3</option>
+                    <option value="IP04">Iphone 4</option>
+                    <option value="IP05">Iphone 5</option>
+                    
+                </select>
+
+            </div>
+
+            <div>
+                Đi kèm:
+                <input value="DV01" type="checkbox" name="dichvu" id="kemsac"> <label for="kemsac">Kèm sạc</label>
+                <input value="DV02" type="checkbox" name="dichvu" id="kemtainghe"> <label for="kemtainghe">Kèm tai nghe</label>
+                <input value="DV03" type="checkbox" name="dichvu" id="baohanh"> <label for="baohanh">Bảo hành</label>
+                
+            </div>
+            <div>
+                <label for="sl">Số lượng</label>
+                <input value="0" type="number" name="soLuong" id="sl" min="0">
+            </div>
+            <div>Giá: <span id="dongia">0</span></div>
+            <div>Thành tiền: <span id="amount">0</span></div>
+            <div>
+                <input type="submit" value="submit">
+                <input type="reset" value="reset">
+            </div>
+        </form>
+
+        <script>
+            let dongia = document.getElementById("dongia");
+            let amount = document.getElementById('amount');
+            let list = document.getElementById('list');
+            let soLuong = document.getElementById('sl');
+            let dichvus = document.getElementsByName('dichvu');
+
+            function item(id, name, price){
+                this.id = id;
+                this.name = name;
+                this.price = price;
+            }
+
+            function DV(id, name, price){
+                this.id = id;
+                this.name = name;
+                this.price = price;
+            }
+            function getIndex(IdTarget, arr){
+                    let x;
+                    for(const i in arr){
+                        if(arr[i].id == IdTarget){
+                            x = i;
+                            break;
+                        }
+                    }
+                    return x;
+                }
+            item[0] = new item('IP01', 'Iphone 1', 400);
+            item[1] = new item('IP02', 'Iphone 2', 440);
+            item[2] = new item('IP03', 'Iphone 3', 500);
+            item[3] = new item('IP04', 'Iphone 4', 510);
+            item[4] = new item('IP05', 'Iphone 5', 800);
+            
+            DV[0] = new DV('DV01', 'kèm sạc', 20);
+            DV[1] = new DV('DV02', 'kèm tai nghe', 30);
+            DV[2] = new DV('DV03', 'bảo hành', 100);
+            
+            for (const dv of dichvus) {
+                dv.addEventListener("change", TinhGia);
+            }
+
+            list.addEventListener("change", function(){
+                let IdTarget = event.target.value;
+                dongia.textContent = item[getIndex(IdTarget, item)].price;
+                TinhGia();
+            })
+
+            soLuong.addEventListener("change", TinhGia);
+
+
+            function TinhGia(){
+                soLuong.value < 0 ? soLuong.value =0 : undefined;
+                let gia = 0;
+                for (const dv of dichvus) {
+                    if(dv.checked){
+                        gia += DV[getIndex(dv.value, DV)].price;
+                    }
+                }
+                gia = (gia + Number(dongia.textContent))*Number(soLuong.value);
+                amount.textContent = gia;
+            }
+
+            function DatHang(){
+                let myForm = event.target;
+                if(myForm.list.value == '' || myForm.soLuong.value == '0'){
+                    alert('Bạn chưa chọn sản phẩm hoặc nhập số lượng');
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </section>
+</body>
+</html>

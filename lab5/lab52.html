@@ -67,16 +67,16 @@
         }
 
         function removePro(clear){
-            
-            document.getElementById("list_bag").removeChild(clear.parentElement);
             let new_amount = -clear.parentElement.querySelectorAll("tr > td:nth-child(2)")[0].innerText.substr(1) + 1*amount.innerText;
             amount.innerText = new_amount;
+
+            document.getElementById("list_bag").removeChild(clear.parentElement);
             check_bag();
         }
 
         function check_bag(){
             if(amount.innerText == '0'){
-                document.getElementById("check").innerText = "rỗng";
+                document.getElementById("check").innerText = "trống";
             }
         }
         check_bag();

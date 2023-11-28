@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hóa Đơn</title>
+</head>
+<body>
+    
+    <script>
+        var a = window.location.search;
+        var hoadon = (a.substr(1).split('&'));
+        console.log(hoadon);
+        
+        document.writeln(hoadon.join('<br>'));
+    </script>
+</body>
+</html>
